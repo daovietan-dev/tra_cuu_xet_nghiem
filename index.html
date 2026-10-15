@@ -547,7 +547,14 @@
       function matchQuery(item, query) {
         if (!query) return true;
         const normalizedQuery = query.toLowerCase().trim();
-        return Object.values(item).some(value =>
+        // Gom các trường dữ liệu cần tìm kiếm thành một mảng cố định (bỏ qua trường id)
+        const searchableValue = [
+          item["Mã phương pháp"],
+          item["Yêu cầu xét nghiệm"],
+          item["Phương pháp xét nghiệm"],
+          item["Ghi chú"]
+        ]
+        return searchableValue.some(value =>
           String(value).toLowerCase().includes(normalizedQuery),
         );
       }
